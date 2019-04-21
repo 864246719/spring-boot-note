@@ -1,0 +1,17 @@
+Scope
+//默认singleton 创建多个同样的bean 对象一样==
+<bean id="myCoach"
+	class="com.luv2code.springdemo.TrackCoach"
+	scope="prototype">  //创建对象地址不一样
+</bean>	
+
+
+
+lifecycle
+init 
+destroy
+<bean id="myCoach"
+	class="com.luv2code.springdemo.TrackCoach"
+	init-method="doMyStartupStuff"
+	destroy-method="doMyCleanupStuffYoYo">
+</bean>

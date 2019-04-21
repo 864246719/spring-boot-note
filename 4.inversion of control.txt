@@ -1,0 +1,25 @@
+what are java  Annotations?
+like a shoebox provide meta-data 
+
+behind the secene:
+Spring will scan your java classs for special annnotations
+Automatically register the beans in the Spring container
+
+--------------------------@component ×Ô¶¯×¢Èëbean
+Development Process
+1.Enable compontent scnning in Spring config file 
+2.Addd the @Componment Annotation to your java classes
+3.Retrieve bean from Spring container
+
+
+<beans>
+	<context:component-scan base-package="com.luv2code.springdemo"  />
+<beans/>	
+             
+ (Annotation) (bean id)
+@Component("thatSillyCoach")
+public class TennisCoach implemnts Coach{
+	...
+}
+
+Coach theCoach= context.getbean("thatSillyCoach",Coach.class);

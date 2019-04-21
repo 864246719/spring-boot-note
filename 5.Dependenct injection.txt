@@ -1,0 +1,75 @@
+注释  
+@component自动装配bean
+
+
+@Override  tell compailer we are overriding a method  如果没有重构哪个方法，会报错
+Annotation minimizes the xml confiurartion
+
+Spring AutoWiring
+ 
+Spring will look for a class that matching the property ,type by interface or class
+----------------------------------Autoring Example
+1、Injecting FortneService into  a Coach Implementation
+2、Spring will scan @Component
+3、Any one implements FoutuneService interface?
+4、if so ,let's inject them. For examplel:HappyServiceService
+
+
+
+
+-------------------Autowiring Injection Type
+1、Constructor Injection
+2、Setter Injectino  //不分方法名，只要@Autowired
+3、Field Injection
+
+-----------Constructor Injdection 
+Development Process 
+1、define the dependency interface and class
+2、create a constructor in your class for injection
+3、configure the dependency injection with @Autowired Annotaiton
+
+直接写第三步
+@Component
+public class TennisCoach implemnts Coach{
+	private FortuneService fortuneService;
+	@Autowired//自动把fortuneService注入到TennisCoach
+	public TennisCoach(FortuneService fortuneService){
+		fortuneService=theFortuneService;
+	}
+}
+
+-----------------setter Injdection
+setter injection with Annotations and autowring
+
+example:
+1、Injection Forutnesrvice into a Coach implementation
+2、Spring will scan @Components
+3、any one implements FotuneService interface?
+4、if so,let's inject them. for example:HapppyFortuneService
+
+process:
+1、create setter methods in your class
+2、Configure the dependency injection @Autowired
+
+
+@Component
+public class TennisCoach implemnts Coach{
+	private FortuneService fortuneService;
+	public TennisCoach(){}
+	@Autowired//自动把fortuneService注入到TennisCoach
+	public void SetFortuneService(FortuneService fortuneService){
+		this.fortuneService=fortuneService;
+	}
+}
+
+
+
+
+
+------------------field Injection
+@Autowired
+private FortuneService fortuneService;
+
+note:	@Autowired
+	@Qualifier("happyFortuneService")//if you have other implement class 
+	private FortuneService fortuneService;

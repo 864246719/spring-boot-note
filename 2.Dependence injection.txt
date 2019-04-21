@@ -1,0 +1,60 @@
+xml(相当于spring container) 中的<bean> 相当于 behind the secene new object
+DI 中的Dependence =helper 如：
+<bean id ="myCoach"
+	class ="com.luv2code.springdemo.BaseballCoach">
+	<constructor-org ref="myFouturneService"/>
+</bean> 
+--------------等价于--------------
+BaseballCoach myCoach=new BaseballCoach(myFortuneService);  //此处的muFortuneService是dependence  ,inject入Constructor中
+
+
+---------------------------------Constructor injection 
+1define the dependencty interface and class 
+2、Create a constructor in your class for injections
+3、Configure the dependency injection in Spring config file
+
+
+BaseBallCoach.class 
+public ForuneService fortuneServcie;   
+public BaseballCoach(FortuneService theFortuneService) {  //构造  看xml
+	fortuneService=theFortuneService;
+}
+public String getDailyFortune() {
+		return fortuneService.getFortune(); //fortuneService 父亲
+}
+
+HappyFortuneService implements FortuneService  有getFortune(）
+
+config.xml
+此处指明BaseBallCoach.class中的getFortune()是happyFortuneService （儿子）
+<bean id="myFortune"
+		class="com.luv2code.springdemo.HappyFortuneService">
+	</bean>
+	
+	<bean id="myCoach"
+		class="com.luv2code.springdemo.BaseballCoach">
+	
+		<!-- set up constructor injection -->
+		<constructor-arg ref="myFortune" />
+	</bean>
+
+
+---------------------------------setter injection
+1、create setter method(s) in your class for injections
+2、Configure the dependency injection in Spring configure file
+<bean id="myCricketCoach"  
+	class ="com.luv2code.springdemo.CricketCoach">
+		
+	<!-- set up setter injection -->
+	<property name="fortuneService" ref="myFortuneService"  />	//fortuneService是class中的setFortunService的来源
+</bean>
+<bean id="myCricketCoach"  
+		class ="com.luv2code.springdemo.CricketCoach">
+		
+		<!-- set up setter injection -->
+		<property name="fortuneService" ref="myFortuneService"  /> //fortuneService是class中的setFortunService的来源	
+		
+		<!--inject literal values  -->
+		<property name="emailAddress" value="86426719@qq.com"/>
+		<property name="team" value="ali.team"/>
+	</bean>
